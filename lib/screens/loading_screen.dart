@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:weather_flutter/screens/location_screen.dart';
 import 'package:weather_flutter/services/location.dart';
 import 'package:weather_flutter/services/networking.dart';
 
@@ -19,6 +21,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
     print('현재 온도 ${resultJson['main']['temp']}');
     print('날씨 아이디 ${resultJson['weather'][0]['id']}');
     print('날씨 아이디 ${resultJson['name']}');
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LocationScreen();
+    }));
   }
 
   @override
@@ -30,7 +36,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(),
+      body: Center(
+        child: SpinKitHourGlass(
+          color: Colors.white,
+          size: 50.0,
+        ),
+      ),
     );
   }
 }
