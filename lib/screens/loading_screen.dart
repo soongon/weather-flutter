@@ -16,6 +16,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     var resultJson = await apiHelper.getWeatherJsonFromLocation(
         locationService.latitude, locationService.longitude);
     print(resultJson);
+    print('현재 온도 ${resultJson['main']['temp']}');
+    print('날씨 아이디 ${resultJson['weather'][0]['id']}');
+    print('날씨 아이디 ${resultJson['name']}');
   }
 
   @override

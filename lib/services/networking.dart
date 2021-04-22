@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart';
 
 class ApiHelper {
@@ -7,11 +9,13 @@ class ApiHelper {
       'lat': latitude.toString(),
       'lon': longitude.toString(),
       'appid': '5df3f1b99c9227bb6bb15d61c2b5bf9b',
+      'units': 'metric',
     });
 
     Response response = await get(url);
+
     if (response.statusCode == 200) {
-      return response.body;
+      return jsonDecode(response.body);
     } else {
       print(response.statusCode);
     }
