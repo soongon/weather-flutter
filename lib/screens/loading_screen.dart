@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_flutter/services/location.dart';
+import 'package:weather_flutter/services/networking.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -7,17 +8,20 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void _getLocation() async {
+  void _getWeatherWithLocation() async {
     LocationService locationService = LocationService();
     await locationService.getCurrentLocation();
-    print('from screen ${locationService.latitude}');
-    print(locationService.longitude);
+
+    ApiHelper apiHelper = ApiHelper();
+    var resultJson = await apiHelper.getWeatherJsonFromLocation(
+        locationService.latitude, locationService.longitude);
+    print(resultJson);
   }
 
   @override
   void initState() {
     super.initState();
-    _getLocation();
+    _getWeatherWithLocation();
   }
 
   @override
