@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:weather_flutter/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
+  LocationScreen({this.weatherData});
+
+  final weatherData;
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    print(widget.weatherData);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,3 +84,7 @@ class _LocationScreenState extends State<LocationScreen> {
     );
   }
 }
+
+// print('현재 온도 ${resultJson['main']['temp']}');
+// print('날씨 아이디 ${resultJson['weather'][0]['id']}');
+// print('날씨 아이디 ${resultJson['name']}');
