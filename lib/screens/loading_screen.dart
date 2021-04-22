@@ -7,20 +7,23 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  void _getLocation() async {
+    LocationService locationService = LocationService();
+    await locationService.getCurrentLocation();
+    print('from screen ${locationService.latitude}');
+    print(locationService.longitude);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            LocationService locationService = LocationService();
-            await locationService.getCurrentLocation();
-            print(locationService.latitude);
-            print(locationService.longitude);
-          },
-          child: Text('Get Location'),
-        ),
-      ),
+      body: Center(),
     );
   }
 }
